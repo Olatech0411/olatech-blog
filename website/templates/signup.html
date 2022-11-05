@@ -1,7 +1,21 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
-  content %}
-  <form method="POST">
+{% extends "base.html" %} 
+{% block title %}
+<title>Sign Up</title>
+{% endblock %} 
+{% block content %}
+  <form method="POST" style="margin: 20px auto; max-width:1000px; width: 100%;">
     <h3 align="center">Sign Up</h3>
+    <div class="form-group">
+      <label for="firstName">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user_id"
+        name="username"
+        placeholder="Username"
+        required
+      />
+    </div>
     <div class="form-group">
       <label for="email">Email Address</label>
       <input
@@ -10,16 +24,7 @@
         id="user_id"
         name="email"
         placeholder="Enter email"
-      />
-    </div>
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="user_id"
-        name="first name"
-        placeholder="Enter first name"
+        required
       />
     </div>
     <div class="form-group">
@@ -30,6 +35,7 @@
         id="password1"
         name="password1"
         placeholder="Enter password"
+        required
       />
     </div>
     <div class="form-group">
@@ -40,6 +46,7 @@
         id="password2"
         name="password2"
         placeholder="Confirm password"
+        required
       />
     </div>
     <br />
