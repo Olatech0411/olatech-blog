@@ -1,190 +1,125 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Webpage Design</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
-</head>
-<body>
-    {% extends "base.html" %}
-    {% block title %}
-    <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
-    {% endblock %}
-    
-    {% block content %}
-    <div class="main">
-        <div id="posts" style="margin: 20px auto; max-width:1000px; width: 100%;">
-            {% for post in posts %}
-            <div class="card border-dark">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <a href="#">{{post.user.username}}</a>
-                {% if  user.is_authenticated %}
-                <div>
-                
-                  <span id="likes-count-{{post.id}}">
-                  {{ post.likes|length }}</span> 
-                  {% if user.id in post.likes|map(attribute="author")|list %}
-                  <i
-                    class="fas fa-thumbs-up"
-                    id="like-button-{{post.id}}"
-                    onclick="like({{post.id}})"
-                  ></i>
-                  {% else %}
-                  <i
-                    class="far fa-thumbs-up"
-                    id="like-button-{{post.id}}"
-                    onclick="like({{post.id}})"
-                  ></i>
-                  {% endif %} 
-                  {% if user.id == post.author %}
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-primary dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                    ></button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="/delete-post/{{post.id}}" class="dropdown-item"
-                          >Delete</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                  {% endif %}
-                </div>
-                {% endif %}
-              </div>
-              <div class="card-body">
-                <div class="card-text">{{post.text}}</div>
-                <br />
-                <div class="collapse" id="comments-{{post.id}}">
-                  <div class="card">
-                    <div class="card-body" id="comments-expanded-{{post.id}}">
-                      {% for comment in post.comments %}
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <a href="#"
-                            >{{comment.user.username}}</a
-                          >: {{comment.text}}
-                        </div>
-                        <div>
-                          <small class="text-muted"> {{comment.date_created}}</small>
-                          {% if user.id == comment.author or user.id == post.author %}
-                          <div class="btn-group">
-                            <button
-                              type="button"
-                              class="btn btn-sm btn-primary dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                            ></button>
-                            <ul class="dropdown-menu">
-                              <li>
-                                <a
-                                  href="/delete-comment/{{comment.id}}"
-                                  class="dropdown-item"
-                                  >Delete</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
-                          {% endif %}
-                        </div>
-                      </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-                <p class="card-text">
-                  {% if post.comments|length > 0 %}
-                  <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
-                    <small>View {{post.comments|length}} Comments</small>
-                  </a>
-                  {% else %}
-                  <small class="text-muted">No Comments</small>
-                  {% endif %}
-                </p>
-                <form
-                  class="input-group mb-3"
-                  method="POST"
-                  action="/create-comment/{{post.id}}"
-                >
-                  <input
-                    type="text"
-                    id="text"
-                    name="text"
-                    class="form-control"
-                    placeholder="Comment something!"
-                  />
-                  <button type="submit" class="btn btn-primary">Comment</button>
-                </form>
-              </div>
-              <div class="card-footer text-muted">{{post.date_created}}</div>
-            </div>
-            <br/ > {% endfor %}
-          </div>
-    </div>
-    {% endblock %}
-    
-    {% block scripts %}
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    {% endblock %}
-    <div class="main">
-        <div class="navbar">
-            <div class="icon">
-                <h2 class="logo">PraRoz</h2>
-            </div>
+{% extends "base.html" %}
+{% block title %}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
+{% endblock %}
 
-            <div class="menu">
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">SERVICE</a></li>
-                    <li><a href="#">DESIGN</a></li>
-                    <li><a href="#">CONTACT</a></li>
+{% block content %}
+<div class="main">
+    <div id="posts" style="margin: 20px auto; max-width:1000px; width: 100%;">
+        {% for post in posts %}
+        <div class="card border-dark">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <a href="#">{{post.user.username}}</a>
+            {% if  user.is_authenticated %}
+            <div>
+            
+              <span id="likes-count-{{post.id}}">
+              {{ post.likes|length }}</span> 
+              {% if user.id in post.likes|map(attribute="author")|list %}
+              <i
+                class="fas fa-thumbs-up"
+                id="like-button-{{post.id}}"
+                onclick="like({{post.id}})"
+              ></i>
+              {% else %}
+              <i
+                class="far fa-thumbs-up"
+                id="like-button-{{post.id}}"
+                onclick="like({{post.id}})"
+              ></i>
+              {% endif %} 
+              {% if user.id == post.author %}
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                ></button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/delete-post/{{post.id}}" class="dropdown-item"
+                      >Delete</a
+                    >
+                  </li>
                 </ul>
+              </div>
+              {% endif %}
             </div>
-
-            <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type To text">
-                <a href="#"> <button class="btn">Search</button></a>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <div class="card-text">{{post.text}}</div>
+            <br />
+            <div class="collapse" id="comments-{{post.id}}">
+              <div class="card">
+                <div class="card-body" id="comments-expanded-{{post.id}}">
+                  {% for comment in post.comments %}
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <a href="#"
+                        >{{comment.user.username}}</a
+                      >: {{comment.text}}
+                    </div>
+                    <div>
+                      <small class="text-muted"> {{comment.date_created}}</small>
+                      {% if user.id == comment.author or user.id == post.author %}
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-primary dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                        ></button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a
+                              href="/delete-comment/{{comment.id}}"
+                              class="dropdown-item"
+                              >Delete</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
             </div>
-
-        </div> 
-        <div class="content">
-            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
-            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
-                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
-                <br> a quae totam ipsa illum minus laudantium?</p>
-
-                <button class="cn"><a href="#">JOIN US</a></button>
-
-                <div class="form">
-                    <h2>Login Here</h2>
-                    <input type="email" name="email" placeholder="Enter Email Here">
-                    <input type="password" name="" placeholder="Enter Password Here">
-                    <button class="btnn"><a href="#">Login</a></button>
-
-                    <p class="link">Don't have an account<br>
-                    <a href="#">Sign up </a> here</a></p>
-                    <p class="liw">Log in with</p>
-
-                    <div class="icons">
-                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-google"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
-                    </div>
-
-                </div>
-                    </div>
-                </div>
+            <p class="card-text">
+              {% if post.comments|length > 0 %}
+              <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+                <small>View {{post.comments|length}} Comments</small>
+              </a>
+              {% else %}
+              <small class="text-muted">No Comments</small>
+              {% endif %}
+            </p>
+            <form
+              class="input-group mb-3"
+              method="POST"
+              action="/create-comment/{{post.id}}"
+            >
+              <input
+                type="text"
+                id="text"
+                name="text"
+                class="form-control"
+                placeholder="Comment something!"
+              />
+              <button type="submit" class="btn btn-primary">Comment</button>
+            </form>
+          </div>
+          <div class="card-footer text-muted">{{post.date_created}}</div>
         </div>
-    </div>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-</body>
-</html>
+        <br/ > {% endfor %}
+      </div>
+</div>
+{% endblock %}
 
-{% extends "posts_div.html" %} {% block title %}Home{% endblock %}
+{% block scripts %}
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+{% endblock %}
+   
