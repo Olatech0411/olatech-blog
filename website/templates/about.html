@@ -7,23 +7,15 @@
 
 
 {% block content %}
-<body>
-    <section class="about">
-        <div class="main">
-            <img src="{{ url_for('static' ,filename='img/cool_img.png ' ) }}"/>
-            <div class="about-test">  
-              <h1> About Me</h1>
-               <h5>Backend <span>Developer</span></h5>
-               <p> I am a back-end web developer. <br>I can build and maintain the mechanisms that process data and perform actions on websites. <br>I can create and maintain technology at the back-end of a website(the server, database and application). <br>I love to use python language for my codes and Am proud to be a student at Altschool African.</p>
-                <button type="button">let's Talk</button>
-            </div>
+<section>
+    <div>
+        <!-- <img src="{{ url_for('static' ,filename='img/cool_img.png ' ) }}"/> -->
+        <div style=" text-align: center; max-width: 700px; margin: 20px auto;">  
+            <h1> About </h1>
+            <h3>This site is a blogging and social media website. <br> Here you can share your ideas with the world</h3>
         </div>
+    </div>
     </section>
-</body>
-
-
-
-
 {% endblock %}
 
 {% block scripts %}
