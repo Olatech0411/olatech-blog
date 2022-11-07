@@ -14,7 +14,7 @@
             <a href="#">{{post.user.username}}</a>
             {% if  user.is_authenticated %}
             <div>
-            
+              
               <span id="likes-count-{{post.id}}">
               {{ post.likes|length }}</span> 
               {% if user.id in post.likes|map(attribute="author")|list %}

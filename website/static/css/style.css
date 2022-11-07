@@ -5,7 +5,7 @@
 
 .main{
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(1.jpg);
+    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(190, 5, 5, 0.5)50%), url(1.jpg);
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -15,9 +15,9 @@
     width: 1200px;
     height: 75px;
     margin: auto;
-    position: sticky;
+    z-index: 1;
+    position: fixed;
     top: 0;
-    
 }
 
 .icon{
@@ -58,7 +58,7 @@ ul li{
 
 ul li a{
     text-decoration: none;
-    color: #fff;
+    color: rgb(32, 62, 215);
     font-family: Arial;
     font-weight: bold;
     transition: 0.4s ease-in-out;
@@ -270,7 +270,7 @@ ul li a:hover{
 .about{
     width: 100%;
     padding: 78px 0px;
-    background-color:#1919;
+    background-color:rgb(250, 253, 247);
 }
 .about img{
     height: auto;
@@ -312,8 +312,13 @@ ul li a:hover{
     font-size: 18px;
     margin-bottom: 45px;
 }
-button{
-    background: #f9004d;
+button:hover{
+    background: transparent;
+    border: 2px solid #f9004d;
+    cursor: pointer;
+    
+}
+.emailme{ background: #f9004d;
     color: white;
     text-decoration: none;
     border: 2px solid transparent;
@@ -321,10 +326,4 @@ button{
     padding: 13px 30px;
     border-radius: 30px;
     transition: .4s;
-}
-button:hover{
-    background: transparent;
-    border: 2px solid #f9004d;
-    cursor: pointer;
-
 }

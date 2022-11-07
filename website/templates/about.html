@@ -1,11 +1,27 @@
 {% extends "base.html" %}
 {% block title %}
-<title>About</title>
+<title>About Me</title>
 <link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
 {% endblock %}
 
+
+
 {% block content %}
-<h1>ADD SOMETHING ABOUT YOUR SITE HERE</h1>
+<body>
+    <section class="about">
+        <div class="main">
+            <img src="{{ url_for('static' ,filename='img/cool_img.png ' ) }}"/>
+            <div class="about-test">  
+              <h1> About Me</h1>
+               <h5>Backend <span>Developer</span></h5>
+               <p> I am a back-end web developer. <br>I can build and maintain the mechanisms that process data and perform actions on websites. <br>I can create and maintain technology at the back-end of a website(the server, database and application). <br>I love to use python language for my codes and Am proud to be a student at Altschool African.</p>
+                <button type="button">let's Talk</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+
 
 
 {% endblock %}

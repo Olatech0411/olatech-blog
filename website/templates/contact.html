@@ -1,10 +1,30 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Contact</title>
+<title>Contact Me</title>
+<link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
 {% endblock %}
 
+
+
 {% block content %}
-<h1>ADD YOUR  CONTACT SECTION HERE</h1>
+<body>
+    <section class="about">
+        <div class="main">
+            <img src="{{ url_for('static' ,filename='img/cool_img.png ' ) }}"/>
+            <div class="about-test">  
+              <h1> Contact Me!</h1>
+               <h5>Backend <span>Developer</span></h5>
+               <p>  I am a back-end web developer. <br> I can build and maintain the mechanisms that process data and perform actions on websites. <br>I can create and maintain technology at the back-end of a website(the server, database and application). <br>I love to use python language for my codes and Am proud to be a student at Altschool African.</p>
+                
+               <a href ="mailto: olamiedeomitogun8@gmail.com" class="emailme">let's Talk</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+
 {% endblock %}
 
 {% block scripts %}
