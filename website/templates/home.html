@@ -1,12 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Webpage Design</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
-</head>
-<body>
     {% extends "base.html" %}
     {% block title %}
     <title>Home</title>
@@ -140,9 +132,9 @@
                 <ul>
                     <li><a href="#">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">SERVICE</a></li>
-                    <li><a href="#">DESIGN</a></li>
                     <li><a href="#">CONTACT</a></li>
+                    <!--<li><a href="#">DESIGN</a></li>
+                    <li><a href="#">CONTACT</a></li>-->
                 </ul>
             </div>
 
@@ -153,10 +145,8 @@
 
         </div> 
         <div class="content">
-            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
-            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
-                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
-                <br> a quae totam ipsa illum minus laudantium?</p>
+            <h1>Welcome & <br><span>To Olatech</span> <br>Blog</h1>
+            <p class="par">It Is Time to Create<br>Your Awesome<br>Blog!<br></p>
 
                 <button class="cn"><a href="#">JOIN US</a></button>
 
@@ -187,4 +177,3 @@
 </body>
 </html>
 
-{% extends "posts_div.html" %} {% block title %}Home{% endblock %}
