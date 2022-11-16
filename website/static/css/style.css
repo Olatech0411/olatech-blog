@@ -8,15 +8,15 @@
     background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(190, 5, 5, 0.5)50%), url(1.jpg);
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    padding-top: 75px;
 }
 
 .navbar{
     width: 1200px;
     height: 75px;
     margin: auto;
-    z-index: 1;
     position: fixed;
+    z-index: 100;
     top: 0;
 }
 
